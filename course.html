@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Course Details & Reviews</title>
+<style>
+  body {
+    background: #f4f6fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .course-details {
+    max-width: 900px;
+    background: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    margin-bottom: 50px;
+    color: #1c64f2;
+  }
+
+  .course-details h2 {
+    margin-top: 0;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+
+  .course-details p, .course-details ul {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .course-details ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 15px;
+  }
+
+  .reviews-slider {
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  .reviews-track {
+    display: flex;
+    gap: 40px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    cursor: grab;
+    padding: 20px;
+    user-select: none;
+  }
+
+  .reviews-track.active {
+    cursor: grabbing;
+  }
+
+  .review-img {
+    width: 280px;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(28, 100, 242, 0.3);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .review-img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    body {
+      margin: 20px 10px;
+    }
+    .course-details, .reviews-slider {
+      max-width: 100%;
+      padding: 20px;
+    }
+    .review-img {
+      width: 220px;
+      height: 150px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <section class="course-details" aria-label="Course Details">
+    <h2>Course Details</h2>
+    <p>
+      This course is designed to equip trainees with the latest recruitment strategies and effective human resource management techniques. Throughout the program, you will learn how to conduct successful interviews, understand the job market, and use modern recruitment tools.
+    </p>
+    <p><strong>Course Features:</strong></p>
+    <ul>
+      <li>Practical and hands-on lessons with real case studies.</li>
+      <li>Training on using electronic recruitment platforms.</li>
+      <li>Direct support from HR experts.</li>
+      <li>Certification upon successful completion.</li>
+    </ul>
+  </section>
+
+  <section class="reviews-slider" aria-label="Course Reviews">
+    <div class="reviews-track">
+      <img src="review.jpeg" alt="Review 1" class="review-img" />
+      <img src="review2.jpeg" alt="Review 2" class="review-img" />
+      <!-- Add more review images as needed -->
+      <img src="review.jpeg" alt="Review 3" class="review-img" />
+      <img src="review2.jpeg" alt="Review 4" class="review-img" />
+    </div>
+  </section>
+
+  <script>
+    const slider = document.querySelector('.reviews-track');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2; // scroll-fast
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+
+</body>
+</html>
