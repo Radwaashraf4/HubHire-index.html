@@ -27,18 +27,20 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .navbar .logo img {
-  height: 100px;       
-  width: 100px;        
-  border-radius: 50%; 
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
   margin-right: 40px;
+  transition: transform 0.3s ease;
 }
+
 .navbar .logo img:hover {
   transform: scale(1.1);
 }
-
 
 .navbar .logo span {
   font-size: 1.5rem;
@@ -50,6 +52,10 @@ body {
   list-style: none;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 10px 0 0;
 }
 
 .nav-links li a {
@@ -113,4 +119,43 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Responsive for Mobile Devices ===== */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar .logo img {
+    margin: 0 auto 15px;
+  }
+
+  .navbar .logo span {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-section {
+    padding: 60px 15px;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .cta-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
 }
