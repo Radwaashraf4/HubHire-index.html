@@ -27,6 +27,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .logo img {
@@ -37,6 +38,10 @@ body {
   display: flex;
   list-style: none;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 0;
 }
 
 .nav-links a {
@@ -94,4 +99,35 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Responsive styles for mobile devices ===== */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo img {
+    margin-bottom: 10px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .services-section h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
 }
